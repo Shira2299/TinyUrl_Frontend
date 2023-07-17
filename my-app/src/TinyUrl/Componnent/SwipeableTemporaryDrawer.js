@@ -34,8 +34,27 @@ export default function SwipeableTemporaryDrawer() {
   let [links, setLinks] = useState([])
   const token = localStorage.getItem("accessToken")
   const email = localStorage.getItem("email")
-  let linksFromRedux = useSelector(p=>p.link.arrLink)
+  // let linksFromRedux = useSelector(p=>p.link.arrLink)
 
+  const fetchLinks = () => {
+    if (token != null && token != undefined && email) {
+      axios.get(`http://localhost:3000/users/getlinks/${email}`, { headers: { Authorization: `Bearer ${token}` } })
+        .then(res => {
+          console.log('res', res)
+          setLinks(res.data)
+        })
+        .catch(error => console.log('error useEffect of myurl', error));
+    }
+  };
+  useEffect(() => {
+    console.log('enter useEffect');
+    console.log('token',token);
+    console.log('email',email);
+
+    // Fetch links when the component is mounted
+    fetchLinks();
+  }, []);
+  //אפשרות לעשות עם זה ולהשתמש במערך המקומי שב-redux ויש לירק את הפונק הפטצ
   // useEffect(() => {
   //   console.log('enter useEffect');
   //   console.log('token',token);
@@ -60,7 +79,9 @@ export default function SwipeableTemporaryDrawer() {
 .catch(console.log('error delete'))
 }
   const toggleDrawer = (anchor, open) => (event) => {
-
+    if (open) {
+      fetchLinks();
+    }
     if (
       event &&
       event.type === 'keydown' &&
@@ -85,7 +106,8 @@ export default function SwipeableTemporaryDrawer() {
       role="presentation"     
     >
       <List>
-        {/* <MyUrl></MyUrl> */}
+        {/* <MyUrl></MyUrl>  onClick={()=>setFlag(!flag)}*/}
+        {/* <img src={pic} alt="Logo" className="close"/> */}
         <center>
         <h1 style={{margin:"auto",color:"#660066"}}>Your recent TinyURLs</h1><br/>
         </center>
@@ -93,8 +115,8 @@ export default function SwipeableTemporaryDrawer() {
         <br/><br/><br/>
         <ul>
             {/* {linksFromRedux&&linksFromRedux.map((item)=><li>{item.link} */}
-            {links.map((item)=><li> {item.link}
-            <IconButton   onClick={()=>{deleteLink(item.id)}}>
+            {links && links.map((item)=><li> {item.link}
+            <IconButton  onClick={()=>{deleteLink(item.id)}}>
              <DeleteOutlineIcon />
             </IconButton>
            
@@ -123,7 +145,7 @@ export default function SwipeableTemporaryDrawer() {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button className="button_myUrl" onClick={toggleDrawer(anchor, true)} style={{backgroundColor:"#b3b3b3",height:"9vh"}} icon={<RestoreIcon />}>My Url</Button>
+          <Button className="button_myUrl" onClick={toggleDrawer(anchor, true)} style={{backgroundColor:"#b3b3b3",height:"9vh"}}  icon={<RestoreIcon />}>My Url</Button>
           {/* <BottomNavigationAction className="button_myUrl" onClick={toggleDrawer(anchor, true)} style={{backgroundColor:"#b3b3b3",height:"8.4vh"}} icon={<RestoreIcon />}>My Url</BottomNavigationAction> */}
 
         

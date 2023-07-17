@@ -29,6 +29,7 @@ export default function SimpleBottomNavigation() {
   
   const handleLogout = () => {
     localStorage.clear();
+    window.location.reload();
     setFlagLog(false);
   };
  

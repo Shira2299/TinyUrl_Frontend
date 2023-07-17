@@ -37,6 +37,7 @@ const funcSignIn=()=> {
   // setFlag(!flag);
 //  axios.get('http://localhost:3000/users',{name,email,password}).then(res=>{
   // axios.get('http://localhost:3000/auth/${email}/${password}').then(res=>{
+    if(email&&password){
     axios.get(`http://localhost:3000/auth/${email}/${password}`).then(res=>{
     setFlag(!flag);
     console.log('res.data',res.data);
@@ -53,6 +54,7 @@ const funcSignIn=()=> {
   // })
   }).catch(error=>{setError(error.response.data)
     console.log(error.response.data)})
+  }
 }
     return ( 
         <>
@@ -87,7 +89,14 @@ const funcSignIn=()=> {
         </FormControl>
       </Box>
       <Grid item xs={12} sm={12}> {error=="The password is wrong" &&<Alert severity="error" >{error}</Alert>}</Grid>
-      
+      <Grid item xs={12} sm={12}>
+      {!email || !password && (
+       <Alert severity="error">
+       Data missing
+      </Alert>
+       )}
+      </Grid>
+      {/* {!email||!password{<Grid item xs={12} sm={12}> {error=="Data missing" &&<Alert severity="error" >{error}</Alert>}</Grid>}} */}
       <input type="button" className='' value="Sign in" onClick={funcSignIn}/>
     </Box>     
         </>
