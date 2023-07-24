@@ -178,7 +178,7 @@ input{
     padding: 20px;
     width:310px;
     /* height:400px; */
-    height: 350px;
+    height: 360px;
     border-radius: 5%;
     text-align: center;
     margin-left: 150px;
@@ -227,6 +227,14 @@ input{
   right: 1.5%;
 }
 
+.profile{
+  height: 8vh;
+  width: auto;
+  position: absolute;
+  top: 2.2%;
+  left: 1.5%;
+}
+
 .button_myUrl{
   background-color: #b3b3b3;
   /* color: rgb(70, 70, 70) !important; */
@@ -241,3 +249,22 @@ input{
   height:35px;
   text-align:center;
 }
+
+.linkText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.linkWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.truncatedLink {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

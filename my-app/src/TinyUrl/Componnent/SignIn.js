@@ -40,10 +40,22 @@ const funcSignIn=()=> {
     if(email&&password){
     axios.get(`http://localhost:3000/auth/${email}/${password}`).then(res=>{
     setFlag(!flag);
-    console.log('res.data',res.data);
-    localStorage.setItem('accessToken',res.data.accessToken);
+    console.log('res.data',res.data);   
+    //const getName = async () => {
+    // const result = await axios.get(`http://localhost:3000/users/getname/${email}`, {
+    //     headers: { Authorization: `bearer ${res.data.accessToken}` }
+    //   });
+    //   console.log('result',result);
+    //   console.log('result.data',result.data);
+    //   return result.data;
+    // }
+    // const name = getName();
+    // console.log('name',name);
+    // localStorage.setItem('name', name);
+    localStorage.setItem('name',res.data.name);
     localStorage.setItem('email',email);
     localStorage.setItem('password',password);
+    localStorage.setItem('accessToken',res.data.accessToken);
     window.location.reload(); // Refresh the page (for logout)
   // }).catch(err=>{
   //   dis(addMessage({id:1, header:"אירעה תקלה בעת הגישה לשרת", code:err.code}))

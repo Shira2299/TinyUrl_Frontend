@@ -6,7 +6,6 @@ import Modal from '@mui/material/Modal';
 import SignIn from './SignIn';
 import "./TinyUrl.css";
 import pic from '../../pic/close.jpg';
-// import Button from '@mui/material-next/Button';
 
 import Status from './Status';
 const style = {
@@ -28,7 +27,6 @@ export default function BasicModal({flag,setFlag}) {
 
   return (
     <div>
-      {/* <Button onClick={handleOpen}>Sign Up</Button> */}
       <Modal
         open={flag}
         onClose={handleClose}

@@ -1,4 +1,4 @@
-import react from 'react'
+// import react from 'react'
 import "./TinyUrl.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage, removeMessage } from './redux/actions/message.js';
@@ -17,18 +17,17 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 
-export default function Login(){
-    const [orginalUrl,setorginalUrl]=useState("");
+export default function AddUrl(){
+    const [orginalUrl,setOrginalUrl]=useState("");
     const [newUrl,setNewUrl] = useState("");
     const [uniqueName,setUniqueName] = useState("");
     const[flag,setFlag]=useState(false);
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = useState('Default Title');
-    // localStorage.clear();
-    // const navigate UseNavigate();
     let users = useSelector(p=>p.user.arrUser)
     let dis = useDispatch()
-    const id  = localStorage.getItem("id");
+    // const id  = localStorage.getItem("id");
+
     const func = () => {     
       console.log("enter func Login");
       if(!orginalUrl&&!newUrl)
@@ -39,7 +38,6 @@ export default function Login(){
      if(localStorage.getItem('email')!==null)
      {  
       // axios.post("https://tinyurl-3340.onrender.com/links",{orginalUrl,newUrl}).then(res=>{//add by id
-      console.log('/links');
       console.log('orginalUrl',orginalUrl);
       console.log('newUrl',newUrl);
       const token=localStorage.getItem("accessToken")
@@ -48,13 +46,8 @@ export default function Login(){
       axios.post(`http://localhost:3000/links/`,{orginalUrl,newUrl},{headers:{Authorization: `bearer ${token}`}})
       .then(res=>{//add by id
          console.log('after'+res.data.orginalUrl);
-         dis(addLink(res.data))  
-
-        //   console.log("res",res);
-        //   console.log('res.data',res.data);      
+         dis(addLink(res.data))       
           setUniqueName("http://localhost:3000/"+res.data.newUrl,{headers:{Authorization: `bearer ${token}`}});
-        //   console.log('mail',localStorage.getItem("email"));
-        //  console.log('newUrl',newUrl);
         handleClick();
           const mail = localStorage.getItem("email");
           const word = newUrl;
@@ -113,14 +106,19 @@ export default function Login(){
         setTimeout(()=>setTitle("copy"),2000);
         
       }
+      const reset = () => {
+        setOrginalUrl("");
+        setNewUrl("");
+        setUniqueName("");
+      };
     return(
         <>    
         <div className="login">           
              <div className='loginDiv'><br/>
                  <form action="/action_page.php">
                   <label style={{fontFamily:"revert"}}>Enter a long URL to make a TinyURL</label>
-                       <input type="text" className='loginText' id="fname" name="firstname1" placeholder="orginal URL.." onChange={(event) => setorginalUrl(event.target.value)}/>
-                       <input type="text" className='loginText' id="newUrl" name="firstname2" placeholder="alias" onChange={(event) => setNewUrl(event.target.value)}/>
+                       <input type="text" className='loginText' id="fname" name="firstname1" placeholder="orginal URL.." onChange={(event) => setOrginalUrl(event.target.value)} value={orginalUrl}/>
+                       <input type="text" className='loginText' id="newUrl" name="firstname2" placeholder="alias" onChange={(event) => setNewUrl(event.target.value)} value={newUrl}/>
                        <input type="button"className='loginSubmit' value="Make TinyURL!" onClick={func}/><br/>
                        <Snackbar
                        open={open}
@@ -135,6 +133,8 @@ export default function Login(){
 
                        </div>                     
                   </form>
+                  <input type="button" className="loginSubmit" value="Reset" onClick={reset} /><br /><br />
+
              </div>
                   {flag&&<SignUpOpen flag={flag} setFlag={setFlag}/>}
           </div>          

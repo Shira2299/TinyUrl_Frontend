@@ -12,7 +12,7 @@ export default function Text(){
     <h5> Easy Link Shortening</h5>
     <h5>Full Link History</h5>
     <h5>Customized TinyURLs</h5>
-    <button className="make" onClick={()=>setFlag(!flag)} >Creat Free Account</button>
+    <button className="make" onClick={()=>setFlag(!flag)} >Create Free Account</button>
     {flag&&  <SingUpOpen flag={flag} setFlag={setFlag}></SingUpOpen>}
     </div>  
     </>   

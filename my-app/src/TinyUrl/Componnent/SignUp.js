@@ -47,7 +47,7 @@ export default function InputWithIcon({setFlag,flag}) {
       console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",res.data.id);
       console.log("res.data.accessToken",res.data.accessToken);
         dis(addUser(res.data))
-       localStorage.setItem('userName',name);
+       localStorage.setItem('name',name);
        localStorage.setItem('email',email);
        localStorage.setItem('password',password);
       //  localStorage.setItem('id',res.data.id);

@@ -24,6 +24,14 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import './TinyUrl.css';
 import RestoreIcon from '@mui/icons-material/Restore';
 import { useSelector } from 'react-redux';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { deepGreen, deepPurple, green } from '@mui/material/colors';
 
 export default function SwipeableTemporaryDrawer() {
   const [value, setValue] = React.useState(0);
@@ -34,6 +42,7 @@ export default function SwipeableTemporaryDrawer() {
   let [links, setLinks] = useState([])
   const token = localStorage.getItem("accessToken")
   const email = localStorage.getItem("email")
+  const name = localStorage.getItem("name")
   // let linksFromRedux = useSelector(p=>p.link.arrLink)
 
   const fetchLinks = () => {
@@ -46,6 +55,7 @@ export default function SwipeableTemporaryDrawer() {
         .catch(error => console.log('error useEffect of myurl', error));
     }
   };
+  const tinyUrl = "http://localhost:3000/";
   useEffect(() => {
     console.log('enter useEffect');
     console.log('token',token);
@@ -94,12 +104,6 @@ export default function SwipeableTemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
-  //  const server = () => {
- 
-
-  //   console.log("MyUrltoken",token)
-
-  //  }
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 650 }}
@@ -107,22 +111,44 @@ export default function SwipeableTemporaryDrawer() {
     >
       <List>
         {/* <MyUrl></MyUrl>  onClick={()=>setFlag(!flag)}*/}
-        {/* <img src={pic} alt="Logo" className="close"/> */}
+        {name&&<Stack direction="row" spacing={2} className='close'>
+        <Avatar sx={{ bgcolor: deepPurple[600] }}>{name[0]}</Avatar>
+        {/* <Avatar sx={{ bgcolor: green[600] }}>{name[0]}</Avatar> */}
+        </Stack>}
         <center>
         <h1 style={{margin:"auto",color:"#660066"}}>Your recent TinyURLs</h1><br/>
         </center>
         <hr />
         <br/><br/><br/>
         <ul>
-            {/* {linksFromRedux&&linksFromRedux.map((item)=><li>{item.link} */}
-            {links && links.map((item)=><li> {item.link}
+          {links && links.map((item)=><li>
+          <div>
+          <Accordion>
+          <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+          >
+          <Typography className="linkText">{item.link}
             <IconButton  onClick={()=>{deleteLink(item.id)}}>
-             <DeleteOutlineIcon />
-            </IconButton>
-           
-            </li>)}
-        </ul>
-        
+            <DeleteOutlineIcon />
+            </IconButton>     
+          </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+          <Typography>
+          {/* <p>newUrl: <a href="tinyUrl+item.newUrl">{tinyUrl+item.newUrl}</a></p>  */}
+          <p>newUrl: {tinyUrl+item.newUrl}</p>
+          {/* <p>ipAdress: {item.clicks}</p> */}
+          {/* {item.clicks && item.clicks.map((i) => <p>ipAdress: {i.clicks}</p>)}  */}
+          {/* {links.clicks && links.clicks.map((item)=><p>{item.insertedAt}</p>)}  */}
+          </Typography>
+          </AccordionDetails>
+          </Accordion>
+          </div>
+          </li>
+            )}
+        </ul>       
         <br/><br/>
       </List>
       <Divider />
@@ -147,7 +173,6 @@ export default function SwipeableTemporaryDrawer() {
         <React.Fragment key={anchor}>
           <Button className="button_myUrl" onClick={toggleDrawer(anchor, true)} style={{backgroundColor:"#b3b3b3",height:"9vh"}}  icon={<RestoreIcon />}>My Url</Button>
           {/* <BottomNavigationAction className="button_myUrl" onClick={toggleDrawer(anchor, true)} style={{backgroundColor:"#b3b3b3",height:"8.4vh"}} icon={<RestoreIcon />}>My Url</BottomNavigationAction> */}
-
         
           <SwipeableDrawer
             anchor={anchor}
