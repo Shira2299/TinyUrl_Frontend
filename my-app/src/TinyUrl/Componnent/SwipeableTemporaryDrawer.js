@@ -11,8 +11,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import MyUrl from './MyUrl';
-import LinkList from './LinkList';
 import pic from '../../pic/close.jpg';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { IconButton } from '@mui/material';
@@ -40,9 +38,27 @@ export default function SwipeableTemporaryDrawer() {
     right: false,
   });
   let [links, setLinks] = useState([])
+  const [targetParamKey, setTargetParamKey] = useState("");
+  const [nameT, setNameT] = useState("");
+  const [valueT, setValueT] = useState("");
+  const [sendTarget, setSendTarget] = useState("");
+  // const [flagT, setFlagT] = useState(false);
   const token = localStorage.getItem("accessToken")
   const email = localStorage.getItem("email")
   const name = localStorage.getItem("name")
+  
+  const [selectedAccordionId, setSelectedAccordionId] = useState(null);
+
+  // const handleAddTarget = (id) => {
+  //   setSelectedAccordionId(id === selectedAccordionId ? null : id);
+  // };
+  const handleAddTarget = (id) => {
+    setSelectedAccordionId(id === selectedAccordionId ? null : id);
+    setTargetParamKey(""); // Clear the targetParamKey input field
+    setNameT(""); // Clear the nameT input field
+    setValueT(""); // Clear the valueT input field
+  };
+
   // let linksFromRedux = useSelector(p=>p.link.arrLink)
 
   const fetchLinks = () => {
@@ -88,6 +104,65 @@ export default function SwipeableTemporaryDrawer() {
 })
 .catch(console.log('error delete'))
 }
+
+const submit = (id,newUrl) => {
+  console.log('enter handleSubmit id',id);
+  if(nameT&&valueT&&newUrl){
+  //   console.log('enter if submit');
+  // axios.put(` http://localhost:3000/links/${id}`,{targetParamKey},{headers:{Authorization: `Bearer ${token}`}})
+  // .then(res=>{
+  //     console.log("res.data.targetParamKey",res.data.targetParamKey);//מפה חוזר לדוג SEM
+  //     setTargetParamKey(res.data.targetParamKey);
+  //     console.log('targetParamKey',targetParamKey);
+  // }).catch()
+
+  // axios.put(` http://localhost:3000/links`,{nameT,valueT,newUrl,targetParamKey},{headers:{Authorization: `Bearer ${token}`}})//פה הבעיה בהחזרה
+  // .then(res=>{
+  //     console.log('success');
+  //     const newParameter = res.data.substring(res.data.indexOf("3000/") + "3000/".length);
+  //     console.log('newParameter',newParameter);
+  //     axios.get(`http://localhost:3000/mail/${email}/${newParameter}`, { headers: { Authorization: `Bearer ${token}` } })
+  //     .then(res => {
+  //       console.log('successfuly');
+  //     })
+  //     .catch(error => console.log('error email target'));
+  // }).catch()
+  axios
+      .put(`http://localhost:3000/links/${id}`, { targetParamKey }, { headers: { Authorization: `Bearer ${token}` } })
+      .then(res => {
+        console.log("res.data.targetParamKey", res.data.targetParamKey);
+        setTargetParamKey(res.data.targetParamKey);
+        console.log('targetParamKey', res.data.targetParamKey);
+        // Continue with the next state updates after the response has been received
+        // and state is updated with the new value of targetParamKey.
+        axios
+          .put(`http://localhost:3000/links`, { nameT, valueT, newUrl, targetParamKey: res.data.targetParamKey }, { headers: { Authorization: `Bearer ${token}` } })
+          .then(res => {
+            console.log('success');
+            const newParameter = res.data.substring(res.data.indexOf("3000/") + "3000/".length);
+            console.log('newParameter', newParameter);
+            axios.get(`http://localhost:3000/mail/${email}/${newParameter}`, { headers: { Authorization: `Bearer ${token}` } })
+              .then(res => {
+                console.log('successfully');
+              })
+              .catch(error => console.log('error email target'));
+          })
+          .catch(error => {
+            // Handle error for the second axios call.
+            console.log('error in second axios call', error);
+          });
+      })
+      .catch(error => {
+        // Handle error for the first axios call.
+        console.log('error in first axios call', error);
+      });
+}
+}
+
+useEffect(() => {
+  console.log('targetParamKey has been updated:', targetParamKey);
+}, [targetParamKey]);
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (open) {
       fetchLinks();
@@ -139,6 +214,48 @@ export default function SwipeableTemporaryDrawer() {
           <Typography>
           {/* <p>newUrl: <a href="tinyUrl+item.newUrl">{tinyUrl+item.newUrl}</a></p>  */}
           <p>newUrl: {tinyUrl+item.newUrl}</p>
+          {/* <input type="button" value="addTarget" onClick={addTarget}/> */}
+         <input
+         type="button"
+         value="addTarget"
+         onClick={() => handleAddTarget(item.id)}
+         /><br/>
+        {selectedAccordionId === item.id && ( // Only show the inputs for the selected accordion
+        <>
+          <input
+          type="text"
+          id="fname"
+          name="firstname1"
+          placeholder="targetParamKey"
+          onChange={(event) => setTargetParamKey(event.target.value)}
+          value={targetParamKey}
+        />
+        <input
+          type="text"
+          id="fname"
+          name="firstname1"
+          placeholder="name"
+          onChange={(event) => setNameT(event.target.value)}
+          value={nameT}
+        />
+        <input
+          type="text"
+          id="fname"
+          name="firstname1"
+          placeholder="value"
+          onChange={(event) => setValueT(event.target.value)}
+          value={valueT}
+        />
+        <br />
+        <input
+          type="button"
+          value="Make Target!"
+          onClick={() => submit(item.id, item.newUrl)}
+        />
+        {/* <Button variant="contained" onClick={() => submit(item.id, item.newUrl)}></Button> */}
+        <br />
+      </>
+       )}
           {/* <p>ipAdress: {item.clicks}</p> */}
           {/* {item.clicks && item.clicks.map((i) => <p>ipAdress: {i.clicks}</p>)}  */}
           {/* {links.clicks && links.clicks.map((item)=><p>{item.insertedAt}</p>)}  */}

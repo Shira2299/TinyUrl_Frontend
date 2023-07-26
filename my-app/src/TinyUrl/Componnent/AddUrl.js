@@ -6,7 +6,7 @@ import axios  from 'axios';
 import {useState} from 'react';
 import { addLink } from './redux/actions/link';
 import SignUpOpen from './SignUpOpen';
-import MyUrl from './MyUrl';
+// import MyUrl from './MyUrl';
 import SignUp from './SignUp'
 import * as React from 'react';
 import Button from '@mui/material/Button';

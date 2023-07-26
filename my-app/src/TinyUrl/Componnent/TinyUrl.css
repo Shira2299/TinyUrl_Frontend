@@ -173,11 +173,9 @@ input{
   .loginDiv {
     background-color :rgb(204, 204, 204);
     border-style: solid;
-     /* dotted; */
     border-color: black;
     padding: 20px;
     width:310px;
-    /* height:400px; */
     height: 360px;
     border-radius: 5%;
     text-align: center;
