@@ -6,7 +6,7 @@ export default function Text(){
     return(
     <>
     <div className='text'>
-          <b>Welcome to</b>
+    <b>Welcome to</b>
     <h1>TinyURL</h1>
     <h3>Create a free account to enjoy:</h3> 
     <h5> Easy Link Shortening</h5>

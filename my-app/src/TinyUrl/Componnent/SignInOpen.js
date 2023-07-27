@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import SignIn from './SignIn';
 import "./TinyUrl.css";
 import pic from '../../pic/close.jpg';
 
-import Status from './Status';
+// import Status from './Status';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -40,7 +40,7 @@ export default function BasicModal({flag,setFlag}) {
           <img src={pic} alt="Logo" onClick={()=>setFlag(!flag)} className="close"/>
           <h1 className="h1_hover">Tiny Url</h1>
           <h3>Welcome to TinyURL</h3>
-          <Status/>
+          {/* <Status/> */}
           
          
           </Typography>

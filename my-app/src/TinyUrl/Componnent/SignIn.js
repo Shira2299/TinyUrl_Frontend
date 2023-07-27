@@ -5,8 +5,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import {useForm} from 'react-hook-form';
 import { useState } from "react";
-import { FiEye } from "react-icons/fi";
-import "../css/SignIn.css";
+// import { FiEye } from "react-icons/fi";
 import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 import Grid from '@mui/material/Grid';
@@ -24,7 +23,7 @@ import axios from 'axios';
 
  const SignIn = ({setFlag,flag}) => {
    
-const [name,setUserName]=useState("");
+// const [name,setUserName]=useState("");
 const [email,setEmail] = useState("");
 const [password,setPassword] = useState("");
 const [error, setError] = useState(null);
@@ -34,36 +33,17 @@ const handleClickShowPassword = () => setShowPassword((show) => !show);
 let dis = useDispatch();
 
 const funcSignIn=()=> {
-  // setFlag(!flag);
 //  axios.get('http://localhost:3000/users',{name,email,password}).then(res=>{
   // axios.get('http://localhost:3000/auth/${email}/${password}').then(res=>{
     if(email&&password){
     axios.get(`http://localhost:3000/auth/${email}/${password}`).then(res=>{
     setFlag(!flag);
     console.log('res.data',res.data);   
-    //const getName = async () => {
-    // const result = await axios.get(`http://localhost:3000/users/getname/${email}`, {
-    //     headers: { Authorization: `bearer ${res.data.accessToken}` }
-    //   });
-    //   console.log('result',result);
-    //   console.log('result.data',result.data);
-    //   return result.data;
-    // }
-    // const name = getName();
-    // console.log('name',name);
-    // localStorage.setItem('name', name);
     localStorage.setItem('name',res.data.name);
     localStorage.setItem('email',email);
     localStorage.setItem('password',password);
     localStorage.setItem('accessToken',res.data.accessToken);
     window.location.reload(); // Refresh the page (for logout)
-  // }).catch(err=>{
-  //   dis(addMessage({id:1, header:"אירעה תקלה בעת הגישה לשרת", code:err.code}))
-    
-  //   setTimeout(() => {
-  //       dis(removeMessage())
-  //   },2000)
-  // })
   }).catch(error=>{setError(error.response.data)
     console.log(error.response.data)})
   }

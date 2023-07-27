@@ -5,10 +5,10 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer'
-//import SignUp from './SignUp';
+// import SwipeableTemporaryDrawer from './MyUrl'
 import SingUpOpen from './SignUpOpen';
 import SingInOpen from './SignInOpen'
+import MyUrl from './MyUrl';
 export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
   const [flag1, setFlag1] = React.useState(false);
@@ -61,7 +61,7 @@ export default function SimpleBottomNavigation() {
         {/* icon={<LocationOnIcon />} */}
       {flag1&&  <SingUpOpen flag={flag1} setFlag={setFlag1}/>}
       {flagSignIn&&  <SingInOpen flag={flagSignIn} setFlag={setFlagSignIn}/>}
-       <SwipeableTemporaryDrawer></SwipeableTemporaryDrawer>
+       <MyUrl></MyUrl>
       </BottomNavigation>
     </Box>
   );

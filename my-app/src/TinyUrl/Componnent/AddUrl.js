@@ -1,4 +1,4 @@
-// import react from 'react'
+import * as React from 'react';
 import "./TinyUrl.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage, removeMessage } from './redux/actions/message.js';
@@ -6,14 +6,10 @@ import axios  from 'axios';
 import {useState} from 'react';
 import { addLink } from './redux/actions/link';
 import SignUpOpen from './SignUpOpen';
-// import MyUrl from './MyUrl';
-import SignUp from './SignUp'
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 
@@ -26,7 +22,6 @@ export default function AddUrl(){
     const [title, setTitle] = useState('Default Title');
     let users = useSelector(p=>p.user.arrUser)
     let dis = useDispatch()
-    // const id  = localStorage.getItem("id");
 
     const func = () => {     
       console.log("enter func Login");
@@ -44,7 +39,7 @@ export default function AddUrl(){
       console.log(token);
       // axios.post(`http://localhost:3000/links/`,{data:{"orginalUrl":orginalUrl,"newUrl":newUrl},headers:{Authorization: `bearer ${token}`}})
       axios.post(`http://localhost:3000/links/`,{orginalUrl,newUrl},{headers:{Authorization: `bearer ${token}`}})
-      .then(res=>{//add by id
+      .then(res=>{
          console.log('after'+res.data.orginalUrl);
          dis(addLink(res.data))       
           setUniqueName("http://localhost:3000/"+res.data.newUrl,{headers:{Authorization: `bearer ${token}`}});
@@ -52,7 +47,6 @@ export default function AddUrl(){
           const mail = localStorage.getItem("email");
           const word = newUrl;
           console.log('word',word);
-          // axios.get(`http://loaclhost:3000/mail/`+mail+`/`+word,{headers:{Authorization: `bearer ${token}`}});
           axios.get(`http://localhost:3000/mail/${mail}/${word}`,{headers:{Authorization: `bearer ${token}`}})
       }).catch(err=>{
           dis(addMessage({id:1, header:"אירעה תקלה בעת הגישה לשרת", code:err.code}))
@@ -130,11 +124,9 @@ export default function AddUrl(){
                        <div className='copy'>
                        <input type="text" className='loginText' placeholder="Tiny URL" value={uniqueName}  />
                        {/* <button onCopy={c} disabled={!uniqueName} style={{margin:"5px",height:"5vh",marginTop:"7.5%"}}><ContentCopyIcon/></button> */}
-
                        </div>                     
                   </form>
                   <input type="button" className="loginSubmit" value="Reset" onClick={reset} /><br /><br />
-
              </div>
                   {flag&&<SignUpOpen flag={flag} setFlag={setFlag}/>}
           </div>          

@@ -1,4 +1,3 @@
-// import * as React from 'react';
 import React,{useEffect, useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -16,7 +15,6 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { IconButton } from '@mui/material';
 import axios from 'axios';
 import '../../App.css';
-
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import './TinyUrl.css';
@@ -29,9 +27,11 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import CloseIcon from '@mui/icons-material/Close';
 import { deepGreen, deepPurple, green } from '@mui/material/colors';
 
-export default function SwipeableTemporaryDrawer() {
+export default function MyUrl() {
   const [value, setValue] = React.useState(0);
   const [state, setState] = React.useState({
  
@@ -41,8 +41,8 @@ export default function SwipeableTemporaryDrawer() {
   const [targetParamKey, setTargetParamKey] = useState("");
   const [nameT, setNameT] = useState("");
   const [valueT, setValueT] = useState("");
-  const [sendTarget, setSendTarget] = useState("");
-  // const [flagT, setFlagT] = useState(false);
+  // const [sendTarget, setSendTarget] = useState("");
+  const [open, setOpen] = React.useState(false);
   const token = localStorage.getItem("accessToken")
   const email = localStorage.getItem("email")
   const name = localStorage.getItem("name")
@@ -99,8 +99,7 @@ export default function SwipeableTemporaryDrawer() {
     axios.delete(`http://localhost:3000/links/${id}`,{headers:{Authorization: `Bearer ${token}`}})
     .then(res=>{console.log("res",res);
     console.log("Successfully deleted");
-        //   setLinks((prevLinks) => prevLinks.filter((link) => link.id !== id));
-   setLinks(res.data);
+    setLinks(res.data);
 })
 .catch(console.log('error delete'))
 }
@@ -108,31 +107,13 @@ export default function SwipeableTemporaryDrawer() {
 const submit = (id,newUrl) => {
   console.log('enter handleSubmit id',id);
   if(nameT&&valueT&&newUrl){
-  //   console.log('enter if submit');
-  // axios.put(` http://localhost:3000/links/${id}`,{targetParamKey},{headers:{Authorization: `Bearer ${token}`}})
-  // .then(res=>{
-  //     console.log("res.data.targetParamKey",res.data.targetParamKey);//מפה חוזר לדוג SEM
-  //     setTargetParamKey(res.data.targetParamKey);
-  //     console.log('targetParamKey',targetParamKey);
-  // }).catch()
-
-  // axios.put(` http://localhost:3000/links`,{nameT,valueT,newUrl,targetParamKey},{headers:{Authorization: `Bearer ${token}`}})//פה הבעיה בהחזרה
-  // .then(res=>{
-  //     console.log('success');
-  //     const newParameter = res.data.substring(res.data.indexOf("3000/") + "3000/".length);
-  //     console.log('newParameter',newParameter);
-  //     axios.get(`http://localhost:3000/mail/${email}/${newParameter}`, { headers: { Authorization: `Bearer ${token}` } })
-  //     .then(res => {
-  //       console.log('successfuly');
-  //     })
-  //     .catch(error => console.log('error email target'));
-  // }).catch()
   axios
       .put(`http://localhost:3000/links/${id}`, { targetParamKey }, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => {
-        console.log("res.data.targetParamKey", res.data.targetParamKey);
+        console.log("res.data.targetParamKey", res.data.targetParamKey);//מפה חוזר לדוג SEM
         setTargetParamKey(res.data.targetParamKey);
         console.log('targetParamKey', res.data.targetParamKey);
+        handleClick();
         // Continue with the next state updates after the response has been received
         // and state is updated with the new value of targetParamKey.
         axios
@@ -159,9 +140,33 @@ const submit = (id,newUrl) => {
 }
 }
 
-useEffect(() => {
-  console.log('targetParamKey has been updated:', targetParamKey);
-}, [targetParamKey]);
+const handleClick = () => {
+  setOpen(true);
+};
+
+const handleClose = (event, reason) => {
+  if (reason === 'clickaway') {
+    return;
+  }
+
+  setOpen(false);
+};
+
+const action = (
+  <React.Fragment>
+    <Button color="secondary" size="small" onClick={handleClose}>
+      UNDO
+    </Button>
+    <IconButton
+      size="small"
+      aria-label="close"
+      color="inherit"
+      onClick={handleClose}
+    >
+      <CloseIcon fontSize="small" />
+    </IconButton>
+  </React.Fragment>
+);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (open) {
@@ -252,6 +257,13 @@ useEffect(() => {
           value="Make Target!"
           onClick={() => submit(item.id, item.newUrl)}
         />
+          <Snackbar
+           open={open}
+           autoHideDuration={6000}
+           onClose={handleClose}
+           message="Send target url to your email"
+           action={action}
+           />
         {/* <Button variant="contained" onClick={() => submit(item.id, item.newUrl)}></Button> */}
         <br />
       </>
@@ -288,7 +300,7 @@ useEffect(() => {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button className="button_myUrl" onClick={toggleDrawer(anchor, true)} style={{backgroundColor:"#b3b3b3",height:"9vh"}}  icon={<RestoreIcon />}>My Url</Button>
+          <Button className="button_myUrl" onClick={toggleDrawer(anchor, true)} style={{backgroundColor:"#b3b3b3",height:"9vh"}}>My Url</Button>
           {/* <BottomNavigationAction className="button_myUrl" onClick={toggleDrawer(anchor, true)} style={{backgroundColor:"#b3b3b3",height:"8.4vh"}} icon={<RestoreIcon />}>My Url</BottomNavigationAction> */}
         
           <SwipeableDrawer

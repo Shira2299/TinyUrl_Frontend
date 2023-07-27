@@ -98,12 +98,6 @@ body{
      flex-direction:row;   
 }
 
-/* .service{
-    width: 20%;    
-} */
-/* .BottomNavigationAction{
-    background-color: #b3b3b3;
-} */
 .error{
     color: red;
     /* background-color: cadetblue; */
@@ -193,30 +187,21 @@ input{
     color: transparent; 
   }
 
-  /* 
-  .h1 {
-    animation-name: example;
-    animation-duration: 4s;
-    animation-delay: 4s;
-    animation-iteration-count: infinite;
-} */
-
 @keyframes example {
  
   75%  { left:0px; top:200px;}
   100% { left:0px; top:0px;}
 }
 .log{
-  /* width: 100px;75%  100%
-  height: 100px; */
-  /* background-color: red;-2s */
   position: relative;
   animation-name: example;
   animation-duration: 4s;
   animation-delay: -3s;
-  /* animation-iteration-count: 2; */
 }
 
+
+
+/* לכפתור של סגירת קומפוננטה ופרופיל השם */
 .close{
   height: 8vh;
   width: auto;
@@ -225,13 +210,13 @@ input{
   right: 1.5%;
 }
 
-.profile{
+/* .profile{
   height: 8vh;
   width: auto;
   position: absolute;
   top: 2.2%;
   left: 1.5%;
-}
+} */
 
 .button_myUrl{
   background-color: #b3b3b3;
@@ -247,7 +232,7 @@ input{
   height:35px;
   text-align:center;
 }
-
+/* בכדי שאם יש קישור ארוך לפחות יראה את אפשרות של המחיקה */
 .linkText {
   white-space: nowrap;
   overflow: hidden;
@@ -259,10 +244,4 @@ input{
   align-items: center;
 }
 
-.truncatedLink {
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 

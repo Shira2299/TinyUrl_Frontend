@@ -2,26 +2,21 @@ import React, { useEffect } from "react"
 import "./Componnent/TinyUrl.css"
 import AddUrl from "./Componnent/AddUrl"
 import Text from "./Componnent/Text"
-import Service from "./Componnent/Service"
-import SwipeableTemporaryDrawer from './Componnent/SwipeableTemporaryDrawer'
+// import SwipeableTemporaryDrawer from './Componnent/MyUrl'
 import SimpleBottomNavigation from "./Componnent/SimpleBottomNavigation";
-import SignUp from './Componnent/SignUp';
+// import SignUp from './Componnent/SignUp';
 import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
 
 
 const TinyUrl = () =>{
-//  useEffect(()=>{//בעת ריענון הדף מוחק מה localstorage
-//    localStorage.clear();
-//  },[])
-const name = localStorage.getItem("name") || " ";
+
+// const name = localStorage.getItem("name") || " ";
 const email = localStorage.getItem("email");
-const firstName =name[0];
 const [open, setOpen] = React.useState(true);
   return(
         <>
@@ -47,32 +42,19 @@ const [open, setOpen] = React.useState(true);
           </Collapse>   
            )}
         <div className="flex">
-           <h1 className="h1">TinyUrl</h1>
+        <h1 className="h1">TinyUrl</h1>
            
-        <SimpleBottomNavigation className="SimpleBottomNavigation"/>
-         {/* <SwipeableTemporaryDrawer/> */}
-        {/* <ul>
-          <li><a class="active" href="#home">My URLs</a></li>
-          <li><a href="#news">Plans</a></li>
-          <li>
-            <a href="#contact" >Sign Up</a>
-           
-            </li>
-          <li><a href="#about">Sign In</a></li>
-        </ul> */}
-        </div>
-       
-       
+        <SimpleBottomNavigation className="SimpleBottomNavigation"/>       
+        </div>      
         <div className="flex">
-         {/* <SignUp></SignUp> */}
+        <div className="log-wrapper">
          <div className="log">
         <AddUrl />
         </div>
-        <Text/>
-         {/* <Service/> */}
         </div>
-      
-      
+        <Text/>
+        </div>
+           
         </>
     )
 }
