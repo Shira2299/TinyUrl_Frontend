@@ -1,12 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-// import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import SignUp from './SignUp';
 import "./TinyUrl.css";
 import pic from '../../pic/close.jpg';
-// import Button from '@mui/material-next/Button';
 
 // import Status from './Status';
 const style = {

@@ -7,7 +7,6 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Status from './Status';
-// import FormLabel from '@mui/material/FormLabel';
 import {useState} from 'react';
 import { ADD_USER } from './redux/actionsType';
 import {addUser} from './redux/actions/user';
@@ -26,7 +25,7 @@ export default function InputWithIcon({setFlag,flag}) {
   const [error, setError] = useState(null);
   const [name,setUserName]=useState("");
   const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");//localStorage לא קולט אותו למה??????
+  const [password,setPassword] = useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   //  check if finally i need it
@@ -40,7 +39,7 @@ export default function InputWithIcon({setFlag,flag}) {
   const func=()=> {
      console.log('enter func signUp',name,email,password);
     // axios.post("https://tinyurl-3340.onrender.com/users",{name,email,password}).then(res=>{
-      axios.post(`http://localhost:3000/auth`,{name,email,password}).then(res=>{
+      axios.post(`https://tinyb.onrender.com/auth`,{name,email,password}).then(res=>{
         setFlag(!flag);
         console.log(res.data);
       console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",res.data.id);
@@ -49,7 +48,6 @@ export default function InputWithIcon({setFlag,flag}) {
        localStorage.setItem('name',name);
        localStorage.setItem('email',email);
        localStorage.setItem('password',password);
-      //  localStorage.setItem('id',res.data.id);
        localStorage.setItem('accessToken',res.data.accessToken);
        window.location.reload(); // Refresh the page (for logout)
 

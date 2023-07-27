@@ -43,15 +43,12 @@ export default function SimpleBottomNavigation() {
         }}
       >
 
-        {/* <BottomNavigationAction  style={{backgroundColor:" #b3b3b3"}} label="Log Out"  icon={<RestoreIcon />} />   */}
-        {/* style={{backgroundColor:"#b3b3b3",height:"8.4vh"}}  icon={<RestoreIcon />}  */}
-        {/* {flagLog&&<BottomNavigationAction className="button_myUrl" style={{backgroundColor:" #b3b3b3",height:"8vh"}} label="Logout"   onClick={()=>setFlagSignIn(!flagSignIn)}/>} */}
         {flagLog && (
           <BottomNavigationAction
             className="button_myUrl"
             style={{ backgroundColor: ' #b3b3b3', height: '9vh' }}
             label="Logout"
-            onClick={handleLogout}//לרוקן את המערך המקומי
+            onClick={handleLogout}
           />
         )}
         <BottomNavigationAction className="button_myUrl" style={{backgroundColor:" #b3b3b3",height:"9vh"}} label="Sign In"   onClick={()=>setFlagSignIn(!flagSignIn)}/>

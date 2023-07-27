@@ -38,16 +38,16 @@ export default function AddUrl(){
       const token=localStorage.getItem("accessToken")
       console.log(token);
       // axios.post(`http://localhost:3000/links/`,{data:{"orginalUrl":orginalUrl,"newUrl":newUrl},headers:{Authorization: `bearer ${token}`}})
-      axios.post(`http://localhost:3000/links/`,{orginalUrl,newUrl},{headers:{Authorization: `bearer ${token}`}})
+      axios.post(`https://tinyb.onrender.com/links/`,{orginalUrl,newUrl},{headers:{Authorization: `bearer ${token}`}})
       .then(res=>{
          console.log('after'+res.data.orginalUrl);
          dis(addLink(res.data))       
-          setUniqueName("http://localhost:3000/"+res.data.newUrl,{headers:{Authorization: `bearer ${token}`}});
+          setUniqueName("https://tinyb.onrender.com/"+res.data.newUrl,{headers:{Authorization: `bearer ${token}`}});
         handleClick();
           const mail = localStorage.getItem("email");
           const word = newUrl;
           console.log('word',word);
-          axios.get(`http://localhost:3000/mail/${mail}/${word}`,{headers:{Authorization: `bearer ${token}`}})
+          axios.get(`https://tinyb.onrender.com/mail/${mail}/${word}`,{headers:{Authorization: `bearer ${token}`}})
       }).catch(err=>{
           dis(addMessage({id:1, header:"אירעה תקלה בעת הגישה לשרת", code:err.code}))
   

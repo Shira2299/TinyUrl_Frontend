@@ -63,7 +63,7 @@ export default function MyUrl() {
 
   const fetchLinks = () => {
     if (token != null && token != undefined && email) {
-      axios.get(`http://localhost:3000/users/getlinks/${email}`, { headers: { Authorization: `Bearer ${token}` } })
+      axios.get(`https://tinyb.onrender.com/users/getlinks/${email}`, { headers: { Authorization: `Bearer ${token}` } })
         .then(res => {
           console.log('res', res)
           setLinks(res.data)
@@ -71,7 +71,7 @@ export default function MyUrl() {
         .catch(error => console.log('error useEffect of myurl', error));
     }
   };
-  const tinyUrl = "http://localhost:3000/";
+  const tinyUrl = "https://tinyb.onrender.com/";
   useEffect(() => {
     console.log('enter useEffect');
     console.log('token',token);
@@ -96,7 +96,7 @@ export default function MyUrl() {
 
 
   const deleteLink = (id) => {
-    axios.delete(`http://localhost:3000/links/${id}`,{headers:{Authorization: `Bearer ${token}`}})
+    axios.delete(`https://tinyb.onrender.com/links/${id}`,{headers:{Authorization: `Bearer ${token}`}})
     .then(res=>{console.log("res",res);
     console.log("Successfully deleted");
     setLinks(res.data);
@@ -108,7 +108,7 @@ const submit = (id,newUrl) => {
   console.log('enter handleSubmit id',id);
   if(nameT&&valueT&&newUrl){
   axios
-      .put(`http://localhost:3000/links/${id}`, { targetParamKey }, { headers: { Authorization: `Bearer ${token}` } })
+      .put(`https://tinyb.onrender.com/links/${id}`, { targetParamKey }, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => {
         console.log("res.data.targetParamKey", res.data.targetParamKey);//מפה חוזר לדוג SEM
         setTargetParamKey(res.data.targetParamKey);
@@ -117,12 +117,12 @@ const submit = (id,newUrl) => {
         // Continue with the next state updates after the response has been received
         // and state is updated with the new value of targetParamKey.
         axios
-          .put(`http://localhost:3000/links`, { nameT, valueT, newUrl, targetParamKey: res.data.targetParamKey }, { headers: { Authorization: `Bearer ${token}` } })
+          .put(`https://tinyb.onrender.com/links`, { nameT, valueT, newUrl, targetParamKey: res.data.targetParamKey }, { headers: { Authorization: `Bearer ${token}` } })
           .then(res => {
             console.log('success');
             const newParameter = res.data.substring(res.data.indexOf("3000/") + "3000/".length);
             console.log('newParameter', newParameter);
-            axios.get(`http://localhost:3000/mail/${email}/${newParameter}`, { headers: { Authorization: `Bearer ${token}` } })
+            axios.get(`https://tinyb.onrender.com/mail/${email}/${newParameter}`, { headers: { Authorization: `Bearer ${token}` } })
               .then(res => {
                 console.log('successfully');
               })
@@ -219,7 +219,6 @@ const action = (
           <Typography>
           {/* <p>newUrl: <a href="tinyUrl+item.newUrl">{tinyUrl+item.newUrl}</a></p>  */}
           <p>newUrl: {tinyUrl+item.newUrl}</p>
-          {/* <input type="button" value="addTarget" onClick={addTarget}/> */}
          <input
          type="button"
          value="addTarget"

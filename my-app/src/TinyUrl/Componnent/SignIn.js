@@ -36,7 +36,7 @@ const funcSignIn=()=> {
 //  axios.get('http://localhost:3000/users',{name,email,password}).then(res=>{
   // axios.get('http://localhost:3000/auth/${email}/${password}').then(res=>{
     if(email&&password){
-    axios.get(`http://localhost:3000/auth/${email}/${password}`).then(res=>{
+    axios.get(`https://tinyb.onrender.com/auth/${email}/${password}`).then(res=>{
     setFlag(!flag);
     console.log('res.data',res.data);   
     localStorage.setItem('name',res.data.name);

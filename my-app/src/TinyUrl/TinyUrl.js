@@ -2,11 +2,8 @@ import React, { useEffect } from "react"
 import "./Componnent/TinyUrl.css"
 import AddUrl from "./Componnent/AddUrl"
 import Text from "./Componnent/Text"
-// import SwipeableTemporaryDrawer from './Componnent/MyUrl'
 import SimpleBottomNavigation from "./Componnent/SimpleBottomNavigation";
-// import SignUp from './Componnent/SignUp';
 import Alert from '@mui/material/Alert';
-// import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
@@ -14,10 +11,9 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 const TinyUrl = () =>{
-
-// const name = localStorage.getItem("name") || " ";
 const email = localStorage.getItem("email");
 const [open, setOpen] = React.useState(true);
+
   return(
         <>
        {email&&( 
