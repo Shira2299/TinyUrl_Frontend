@@ -35,7 +35,9 @@ let dis = useDispatch();
 const funcSignIn=()=> {
 //  axios.get('http://localhost:3000/users',{name,email,password}).then(res=>{
   // axios.get('http://localhost:3000/auth/${email}/${password}').then(res=>{
+  console.log('enter funcSignIn'); 
     if(email&&password){
+       console.log('enter if'); 
     axios.get(`https://tinyb.onrender.com/auth/${email}/${password}`).then(res=>{
     setFlag(!flag);
     console.log('res.data',res.data);   
