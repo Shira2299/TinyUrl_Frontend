@@ -107,20 +107,24 @@ export default function MyUrl() {
 const submit = (id,newUrl) => {
   console.log('enter handleSubmit id',id);
   if(nameT&&valueT&&newUrl){
+    console.log('enter handleSubmit if');
   axios
       .put(`https://tinyb.onrender.com/links/${id}`, { targetParamKey }, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => {
+        handleClick();
         console.log("res.data.targetParamKey", res.data.targetParamKey);//מפה חוזר לדוג SEM
         setTargetParamKey(res.data.targetParamKey);
         console.log('targetParamKey', res.data.targetParamKey);
-        handleClick();
+        console.log('success put+id');
         // Continue with the next state updates after the response has been received
         // and state is updated with the new value of targetParamKey.
         axios
           .put(`https://tinyb.onrender.com/links`, { nameT, valueT, newUrl, targetParamKey: res.data.targetParamKey }, { headers: { Authorization: `Bearer ${token}` } })
           .then(res => {
-            console.log('success');
-            const newParameter = res.data.substring(res.data.indexOf("3000/") + "3000/".length);
+            console.log('success put res',res);
+            console.log('res.data',res.data);//here the problem not return something??
+            // const newParameter = res.data.substring(res.data.indexOf("3000/") + "3000/".length);
+            const newParameter = res.data;
             console.log('newParameter', newParameter);
             axios.get(`https://tinyb.onrender.com/mail/${email}/${newParameter}`, { headers: { Authorization: `Bearer ${token}` } })
               .then(res => {

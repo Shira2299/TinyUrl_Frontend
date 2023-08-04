@@ -44,7 +44,7 @@ const funcSignIn=()=> {
     localStorage.setItem('password',password);
     localStorage.setItem('accessToken',res.data.accessToken);
     window.location.reload(); // Refresh the page (for logout)
-  }).catch(error=>{setError(error.response.data)
+  }).catch(error=>{//setError(error.response.data)
     console.log(error.response.data)})
   }
 }
