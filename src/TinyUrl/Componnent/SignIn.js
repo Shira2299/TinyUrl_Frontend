@@ -38,6 +38,7 @@ const funcSignIn=()=> {
   console.log('enter funcSignIn'); 
     if(email&&password){
        console.log('enter if'); 
+       console.log('https://tinyb.onrender.com/auth/${email}/${password}'); 
     axios.get(`https://tinyb.onrender.com/auth/${email}/${password}`).then(res=>{
     setFlag(!flag);
     console.log('res.data',res.data);   
