@@ -37,7 +37,6 @@ const funcSignIn=()=> {
   // axios.get('http://localhost:3000/auth/${email}/${password}').then(res=>{
   console.log('enter funcSignIn'); 
     if(email&&password){
-       console.log('https://tinyb.onrender.com/auth/${email}/${password}'); 
        console.log('enter if'); 
        console.log('https://tinyb.onrender.com/auth/${email}/${password}'); 
     axios.get(`https://tinyb.onrender.com/auth/${email}/${password}`).then(res=>{
