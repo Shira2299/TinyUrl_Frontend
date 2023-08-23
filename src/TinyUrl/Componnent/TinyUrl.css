@@ -1,6 +1,7 @@
 
 body{
-    background: url("../../pic/תמונת\ רקע\ 2.webp");
+    /* background: url("../../pic/תמונת\ רקע\ 2.webp"); */
+    background: url("../../pic/background.jpg");
     background-size:100%;
     background-position:top;
     background: cover;
