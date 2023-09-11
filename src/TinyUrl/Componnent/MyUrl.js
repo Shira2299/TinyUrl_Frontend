@@ -213,16 +213,17 @@ const action = (
           aria-controls="panel1a-content"
           id="panel1a-header"
           >
-          <Typography className="linkText">{item.link}
+          <Typography className="linkText" style={{ marginRight:'8%'}}><span style={{display: 'inline-block', width:'30vw'}}>{item.link}</span>
+          </Typography>
             <IconButton  onClick={()=>{deleteLink(item.id)}}>
             <DeleteOutlineIcon />
             </IconButton>     
-          </Typography>
           </AccordionSummary>
           <AccordionDetails>
           <Typography>
-          {/* <p>newUrl: <a href="tinyUrl+item.newUrl">{tinyUrl+item.newUrl}</a></p>  */}
-          <p>newUrl: {tinyUrl+item.newUrl}</p>
+          {/* <p>newUrl: <a href="tinyUrl+item.newUrl">{tinyUrl+item.newUrl}</a></p>  הדרך הזאת לא טובה כי אמור להכיל את הכתוברת האמיתית של האתר ולא בתור מחרוזת*/}
+          {/* <p>newUrl: {tinyUrl+item.newUrl}</p> */}          
+          <p>newUrl: <a href={tinyUrl + item.newUrl}>{tinyUrl + item.newUrl}</a> </p>  
          <input
          type="button"
          value="addTarget"

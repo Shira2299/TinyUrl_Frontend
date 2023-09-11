@@ -238,6 +238,7 @@ input{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  /* width: 34vw; */
 }
 
 .linkWrapper {
