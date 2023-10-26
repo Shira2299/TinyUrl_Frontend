@@ -209,6 +209,7 @@ input{
   position: absolute;
   top: 2.2%;
   right: 1.5%;
+  cursor: pointer;
 }
 
 /* .profile{
