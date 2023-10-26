@@ -150,7 +150,6 @@ input{
     margin: 20px 0;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
   }
   /* הכיתוב:Make TinyURL! */
   .loginSubmit:hover {
@@ -162,6 +161,7 @@ input{
     height: 5vh;
     /* box-shadow: #4d643f 1px 3px 7px 1px; */
      border-radius: 10px;
+     cursor: pointer;
      /* border: groove; */
   }
 
