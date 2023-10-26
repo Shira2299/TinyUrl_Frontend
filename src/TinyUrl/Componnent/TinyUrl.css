@@ -88,6 +88,7 @@ body{
     border: groove;
     border-color: black;
     font-size:medium;
+    cursor: pointer;
 }
 
 .make:hover{
