@@ -39,7 +39,7 @@ export default function InputWithIcon({setFlag,flag}) {
   const func=()=> {
      console.log('enter func signUp',name,email,password);
     // axios.post("https://tinyurl-3340.onrender.com/users",{name,email,password}).then(res=>{
-      axios.post(`http://tinyb.onrender.com/auth`,{name,email,password}).then(res=>{
+      axios.post(`https://tinyb.onrender.com/auth`,{name,email,password}).then(res=>{
         setFlag(!flag);
         console.log(res.data);
       console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",res.data.id);
