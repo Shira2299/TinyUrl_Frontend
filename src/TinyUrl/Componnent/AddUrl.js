@@ -28,6 +28,7 @@ export default function AddUrl(){
       if(!orginalUrl&&!newUrl)
      {
       console.log('orginalUrl',orginalUrl);
+      setFlag(true) 
       return;
      }
      if(localStorage.getItem('email')!==null)

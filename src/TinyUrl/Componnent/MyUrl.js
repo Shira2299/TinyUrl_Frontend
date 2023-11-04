@@ -195,7 +195,7 @@ const action = (
     >
       <List>
         {/* <MyUrl></MyUrl>  onClick={()=>setFlag(!flag)}*/}
-        {name&&<Stack direction="row" spacing={2} className='close'>
+        {name&&<Stack direction="row" spacing={2} className='close2'>
         <Avatar sx={{ bgcolor: deepPurple[600] }}>{name[0]}</Avatar>
         {/* <Avatar sx={{ bgcolor: green[600] }}>{name[0]}</Avatar> */}
         </Stack>}

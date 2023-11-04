@@ -213,6 +213,13 @@ input{
   cursor: pointer;
 }
 
+.close2{
+  height: 8vh;
+  width: auto;
+  position: absolute;
+  top: 2.2%;
+  right: 1.5%;
+}
 /* .profile{
   height: 8vh;
   width: auto;
