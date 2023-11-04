@@ -103,7 +103,7 @@ export default function InputWithIcon({setFlag,flag}) {
           <Alert severity="success"></Alert>
          )}
         </Grid> */}
-      <input type="button"className='' value="Sign up" onClick={func}/>
+      <input type="button"className='sign' value="Sign up" onClick={func}/>
     </Box>     
   );
 }

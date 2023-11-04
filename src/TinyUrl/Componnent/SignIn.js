@@ -92,7 +92,7 @@ const funcSignIn=()=> {
        )}
       </Grid>
       {/* {!email||!password{<Grid item xs={12} sm={12}> {error=="Data missing" &&<Alert severity="error" >{error}</Alert>}</Grid>}} */}
-      <input type="button" className='' value="Sign in" onClick={funcSignIn}/>
+      <input type="button" className='sign' value="Sign in" onClick={funcSignIn}/>
     </Box>     
         </>
      );

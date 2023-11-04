@@ -151,6 +151,7 @@ input{
     margin: 20px 0;
     border: none;
     border-radius: 4px;
+    font-weight: bold;
   }
   /* הכיתוב:Make TinyURL! */
   .loginSubmit:hover {
@@ -219,6 +220,21 @@ input{
   position: absolute;
   top: 2.2%;
   right: 1.5%;
+}
+
+.sign {
+  cursor: pointer;
+  background-color: rgb(7, 95, 66);
+  color: white; /* צבע הטקסט בלבן או בצבע שאת רוצה */
+  border: none; /* להסיר את הגבולות של הכפתור */
+  padding: 10px 10px; /* הריווח בין הטקסט לגבוע, אפשר לשנות את המספרים להתאמת הגודל */
+  border-radius: 5px; /* כדי לעגל את קצות הכפתור */
+  font-size: 16px; /* גודל הגופן */
+}
+
+/* כאשר העכבר מעביר מעל הכפתור, תשני את הצבע לירוק עמוק יותר */
+.sign:hover {
+  background-color: rgb(0, 128, 0);
 }
 /* .profile{
   height: 8vh;
