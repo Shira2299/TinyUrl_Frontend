@@ -271,4 +271,8 @@ input{
   align-items: center;
 }
 
-
+.icon {
+  font-size: 24px; /* גודל הסמל */
+  margin-right: 5px; /* מרווח מימין לסמל כדי להפריד אותו מהטקסט */
+  vertical-align: middle; /* מיושר את הסמל למרכז אנכי של השורה */
+}
