@@ -111,7 +111,9 @@ export default function AddUrl(){
         <div className="login">           
              <div className='loginDiv'><br/>
                  <form action="/action_page.php">
-                  <label style={{fontFamily:"revert"}}>Enter a long URL to make a TinyURL</label>
+                 <label style={{fontFamily:"revert"}}>
+                  <span className="icon">🔗</span> Enter a long URL to make a TinyURL
+                  </label>
                        <input type="text" className='loginText' id="fname" name="firstname1" placeholder="Enter long link here..." onChange={(event) => setOrginalUrl(event.target.value)} value={orginalUrl}/>
                        <input type="text" className='loginText' id="newUrl" name="firstname2" placeholder="Enter alias" onChange={(event) => setNewUrl(event.target.value)} value={newUrl}/>
                        <input type="button"className='loginSubmit' value="Make TinyURL!" onClick={func}/><br/>
