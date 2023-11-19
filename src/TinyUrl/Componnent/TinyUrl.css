@@ -1,4 +1,8 @@
 
+.tiny-url-container *{
+  box-sizing: border-box;
+}
+
 body{
     /* background: url("../../pic/תמונת\ רקע\ 2.webp"); */
     background: url("../../pic/background.jpg");
@@ -276,3 +280,73 @@ input{
   margin-right: 5px; /* מרווח מימין לסמל כדי להפריד אותו מהטקסט */
   vertical-align: middle; /* מיושר את הסמל למרכז אנכי של השורה */
 }
+
+#content{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4px;
+  min-height: 80vh;
+}
+
+.panel1-header {
+  font-size: 2em;
+}
+
+.panel1 {
+  height: auto;
+  max-width: 100%;
+}
+
+.panel1 {
+  background-color: #fff;
+  color: #787475;
+  border-radius: 0;
+  box-shadow: 12px 12px 0px 0px #726e73;
+  text-align: center;
+  font-size: .85em;
+  padding: 2em 3em;
+  margin: 1em 6% 1em 0;
+  max-width: 26%;
+  font-weight: bold;
+  display: inline-block;
+  height: 450px;
+  vertical-align: top;
+}
+
+.features-list {
+  font-size: 1.5em;
+  margin: 2em 0;
+  /* padding: 0; */
+  font-weight: bold;
+}
+
+.panel1 img {
+width: 100px;
+}
+
+.panel1 img {
+  margin: 1.5em;
+  width: 65%;
+  height: auto;
+}
+img {
+  border: none;
+}
+
+img {
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+#content{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4px;
+  min-height: 80vh;
+  margin-left: 4.5%;
+}
+
+div{
+  display: block;
+}
+
