@@ -134,7 +134,7 @@ export default function AddUrl(){
                        action={action}
                        />
                        <div className='copy'>
-                       &nbsp;<input type="text" className='loginText' placeholder="Tiny URL" value={uniqueName}  />
+                       &nbsp;&nbsp;<input type="text" className='loginText' placeholder="Tiny URL" value={uniqueName}  />
                        {/* <button onCopy={c} disabled={!uniqueName} style={{margin:"5px",height:"5vh",marginTop:"7.5%"}}><ContentCopyIcon/></button> */}
                        </div>                     
                   </form>
