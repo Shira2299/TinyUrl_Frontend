@@ -28,7 +28,15 @@ export default function AddUrl(){
       if(!orginalUrl&&!newUrl)
      {
       console.log('orginalUrl',orginalUrl);
-      setFlag(true) 
+      if(orginalUrl==="")
+        console.log('orginalUrl empty');
+      if(!(localStorage.getItem('email')!==null))
+         setFlag(true) 
+      return;
+     }
+     if(orginalUrl==="" || newUrl==="")
+     {
+      console.log('someone empty');
       return;
      }
      if(localStorage.getItem('email')!==null)
@@ -59,6 +67,7 @@ export default function AddUrl(){
       console.log('========');}
       else
       {
+        console.log('enter else setFlag');
          setFlag(true)          
       }  
     }
