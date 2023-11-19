@@ -1,11 +1,6 @@
 import * as React from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
-import {useForm} from 'react-hook-form';
 import { useState } from "react";
-// import { FiEye } from "react-icons/fi";
 import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 import Grid from '@mui/material/Grid';
@@ -17,20 +12,15 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { addMessage, removeMessage } from './redux/actions/message.js';
 import axios from 'axios';
 
  const SignIn = ({setFlag,flag}) => {
    
-// const [name,setUserName]=useState("");
 const [email,setEmail] = useState("");
 const [password,setPassword] = useState("");
 const [error, setError] = useState(null);
 const [showPassword, setShowPassword] = React.useState(false);
 const handleClickShowPassword = () => setShowPassword((show) => !show);  
-
-let dis = useDispatch();
 
 const funcSignIn=()=> {
 //  axios.get('http://localhost:3000/users',{name,email,password}).then(res=>{
@@ -72,8 +62,7 @@ const funcSignIn=()=> {
                   aria-label="toggle password visibility"                 
                   onClick={handleClickShowPassword}
                   //  check if finally i need it                
-                  // onMouseDown={handleMouseDownPassword}
-                
+                  // onMouseDown={handleMouseDownPassword}              
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                
